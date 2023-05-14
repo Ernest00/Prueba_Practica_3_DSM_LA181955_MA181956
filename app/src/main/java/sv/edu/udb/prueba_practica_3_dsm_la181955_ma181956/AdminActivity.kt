@@ -2,11 +2,12 @@ package sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956.model.Usuarios
+import sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956.model.DatosActivos
 
 class AdminActivity : AppCompatActivity() {
 
@@ -16,9 +17,25 @@ class AdminActivity : AppCompatActivity() {
     private lateinit var btnTipos : CardView
     private lateinit var btnAutos : CardView
     private lateinit var btnUsuarios : CardView
+    private lateinit var tvActivo : TextView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin)
+
+        val extras = intent.extras
+
+        if(extras!=null){
+            DatosActivos.usuarioActivo = extras?.getString("useractivo").toString()
+            DatosActivos.idActivo    = extras?.getInt("idactivo").toString()
+
+            Log.d("PP", DatosActivos.usuarioActivo  + ","
+                    + DatosActivos.idActivo  )
+        }
+
+        tvActivo = findViewById<TextView>(R.id.tvActivo)
+        tvActivo.text = "Bienvenido ${DatosActivos.usuarioActivo}"
 
         btnLogout = findViewById<CardView>(R.id.cdvLogout)
         btnLogout.setOnClickListener {
@@ -26,6 +43,9 @@ class AdminActivity : AppCompatActivity() {
                 this, "Sesión cerrada",
                 Toast.LENGTH_LONG
             ).show()
+            DatosActivos.usuarioActivo = ""
+            DatosActivos.idActivo    = ""
+
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()

@@ -169,9 +169,28 @@ class Automovil(context: Context?) {
             COL_IDCOLOR)
         return db!!.query(
             TABLE_NAME, columns,
-            null, null, null, null, "${Marcas.COL_ID} ASC"
+            null, null, null, null, "${COL_ID} ASC"
         )
     }
 
+    fun showItemAll(): Cursor? {
+        val columns = arrayOf(COL_ID, COL_MODELO,
+            COL_VIN,
+            COL_CHASIS,
+            COL_MOTOR,
+            COL_ASIENTOS,
+            COL_ANIO,
+            COL_CAPACIDAD,
+            COL_PRECIO,
+            COL_IMAGEN,
+            COL_DESCRIPCION,
+            COL_IDMARCA,
+            COL_IDTIPO,
+            COL_IDCOLOR)
+        return db!!.query(
+            TABLE_NAME, columns,
+            null, null, null, null, "${COL_MODELO} ASC"
+        )
+    }
 
 }

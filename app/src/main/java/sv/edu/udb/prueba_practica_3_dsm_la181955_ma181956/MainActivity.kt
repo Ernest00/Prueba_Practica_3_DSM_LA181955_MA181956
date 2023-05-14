@@ -10,7 +10,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
 import sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956.model.Usuarios
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -22,7 +21,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private var db: SQLiteDatabase? = null
     private lateinit var databaseHelper: MyDatabaseHelper
     private var managerUsuarios: Usuarios? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -70,10 +68,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         val tip = cursor!!.getColumnIndex("tipo")
                         if(cursor!!.getString(tip)== "ADMIN" ){
                             val intent = Intent(this, AdminActivity::class.java)
+                            intent.putExtra("useractivo", cursor!!.getString(4))
+                            intent.putExtra("idactivo", cursor!!.getInt(0))
+
                             startActivity(intent)
                             finish()
                         }else{
                             val intent = Intent(this, ClientActivity::class.java)
+                            intent.putExtra("useractivo", cursor!!.getString(4))
+                            intent.putExtra("idactivo", cursor!!.getInt(0))
+
                             startActivity(intent)
                             finish()
                         }

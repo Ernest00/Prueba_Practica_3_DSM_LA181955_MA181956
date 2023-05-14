@@ -100,4 +100,5 @@ class Usuarios(context: Context?) {
             null, null, null, null, "${Usuarios.COL_USER} ASC"
         )
     }
+
 }

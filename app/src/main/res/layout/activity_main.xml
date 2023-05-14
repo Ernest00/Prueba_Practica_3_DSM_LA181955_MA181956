@@ -38,7 +38,7 @@
         android:layout_marginBottom="5dp"
         android:ems="10"
         android:singleLine="true"
-        android:text="carlos"
+        android:text="ernesto"
         app:layout_constraintBottom_toTopOf="@+id/tvPass"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUsuario" />
