@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Prueba_Practica_3_DSM_LA181955_MA181956</string>
+    <string name="menu_marca">Marcas</string>
+    <string name="menu_colores">Colores</string>
+    <string name="menu_tipo">Tipo de auto</string>
+    <string name="menu_auto">Automóviles</string>
+    <string name="menu_usuarios">Usuarios</string>
+    <string name="logout">Cerrar sesión</string>
 </resources>

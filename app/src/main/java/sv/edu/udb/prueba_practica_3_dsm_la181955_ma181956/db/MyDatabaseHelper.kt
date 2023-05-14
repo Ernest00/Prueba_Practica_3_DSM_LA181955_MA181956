@@ -6,7 +6,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
 
-class MyDatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class MyDatabaseHelper(private val context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
         private const val DATABASE_NAME = "cars_motors.sqlite"
@@ -14,7 +14,7 @@ class MyDatabaseHelper(private val context: Context) : SQLiteOpenHelper(context,
     }
 
     private val databasePath: String
-        get() = context.getDatabasePath(DATABASE_NAME).path
+        get() = context?.getDatabasePath(DATABASE_NAME)!!.path
 
     init {
         if (!databaseExists()) {
@@ -29,7 +29,6 @@ class MyDatabaseHelper(private val context: Context) : SQLiteOpenHelper(context,
 
     override fun onCreate(db: SQLiteDatabase) {
         // No es necesario implementar este método, ya que la base de datos ya está creada.
-        // Puedes dejarlo vacío o agregar algún código adicional si es necesario.
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -44,7 +43,7 @@ class MyDatabaseHelper(private val context: Context) : SQLiteOpenHelper(context,
 
     @Throws(IOException::class)
     private fun copyDatabaseFromAssets() {
-        val inputStream: InputStream = context.assets.open(DATABASE_NAME)
+        val inputStream: InputStream = context?.assets!!.open(DATABASE_NAME)
         val outputStream = FileOutputStream(databasePath)
 
         val buffer = ByteArray(1024)

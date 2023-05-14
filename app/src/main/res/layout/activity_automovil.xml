@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AutomovilActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="ADMINISTRACION DE AUTOMOVILES"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <!--BUSCADOR-->
+            <RelativeLayout
+                android:id="@+id/lyBuscar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true">
+                <TextView
+                    android:id="@+id/tvId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Codigo"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_alignParentStart="true"/>
+
+                <EditText
+                    android:id="@+id/txtId"
+                    android:inputType="number"
+                    android:layout_width="100dp"
+                    android:layout_height="48dp"
+                    android:layout_toEndOf="@id/tvId"
+                    android:gravity="center"
+                    android:hint="28"
+                    android:layout_centerHorizontal="true"/>
+
+                <Button
+                    android:id="@+id/btnBuscar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_toEndOf="@id/txtId"
+                    android:text="Buscar"
+                    android:textSize="12dp"
+                    android:layout_marginStart="20dp"/>
+
+            </RelativeLayout>
+
+            <!--FORMULARIO-->
+            <TextView
+                android:id="@+id/tvModelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lyBuscar"
+                android:layout_marginTop="20dp"
+                android:text="Modelo: " />
+
+            <EditText
+                android:id="@+id/txtModelo"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_below="@id/lyBuscar"
+                android:layout_toEndOf="@id/tvModelo"
+                />
+
+            <TextView
+                android:id="@+id/tvAnio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lyBuscar"
+                android:layout_toEndOf="@id/txtModelo"
+                android:layout_marginTop="20dp"
+                android:text="Año: " />
+
+            <EditText
+                android:id="@+id/txtAnio"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_below="@id/lyBuscar"
+                android:layout_toEndOf="@id/tvAnio"
+                android:hint="2020"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/tvVIN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvModelo"
+                android:layout_marginTop="20dp"
+                android:text="N° de VIN: " />
+
+            <EditText
+                android:id="@+id/txtVIN"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_below="@id/tvModelo"
+                android:layout_toEndOf="@id/tvVIN"
+                />
+
+            <TextView
+                android:id="@+id/tvChasis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvVIN"
+                android:layout_marginTop="20dp"
+                android:text="N° Chasis: " />
+
+            <EditText
+                android:id="@+id/txtChasis"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_below="@id/tvVIN"
+                android:layout_toEndOf="@id/tvChasis"
+                />
+
+            <TextView
+                android:id="@+id/tvMotor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvChasis"
+                android:layout_marginTop="20dp"
+                android:text="N° Motor: " />
+
+            <EditText
+                android:id="@+id/txtMotor"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_below="@id/tvChasis"
+                android:layout_toEndOf="@id/tvMotor"
+                />
+
+            <TextView
+                android:id="@+id/tvAsientos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvMotor"
+                android:layout_marginTop="20dp"
+                android:text="N° de Asientos: " />
+
+            <EditText
+                android:id="@+id/txtAsientos"
+                android:layout_width="60dp"
+                android:layout_height="48dp"
+                android:layout_below="@id/tvMotor"
+                android:layout_toEndOf="@id/tvAsientos"
+                android:text="20"
+                android:gravity="center"
+                android:inputType="number"
+                />
+
+            <TextView
+                android:id="@+id/tvCapacidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvMotor"
+                android:layout_toEndOf="@id/txtAsientos"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Capacidad: " />
+
+            <EditText
+                android:id="@+id/txtCapacidad"
+                android:layout_width="90dp"
+                android:layout_height="48dp"
+                android:layout_below="@id/tvMotor"
+                android:layout_toEndOf="@id/tvCapacidad"
+                android:hint="2"
+                android:inputType="number"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvMotor"
+                android:layout_toEndOf="@id/txtCapacidad"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:text=" ton." />
+
+            <TextView
+                android:id="@+id/tvPrecio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvAsientos"
+                android:layout_marginTop="20dp"
+                android:text="Precio: $" />
+
+            <EditText
+                android:id="@+id/txtPrecio"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:layout_below="@id/tvAsientos"
+                android:layout_toEndOf="@id/tvPrecio"
+                android:text="20,000"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                />
+
+            <TextView
+                android:id="@+id/tvMarca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvAsientos"
+                android:layout_toEndOf="@id/txtPrecio"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Marca: " />
+
+            <!--EditText
+                android:id="@+id/txtMarca"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_below="@id/tvAsientos"
+                android:layout_toEndOf="@id/tvMarca"
+                android:inputType="numberDecimal"
+                android:gravity="center"
+                /-->
+            <Spinner
+                android:id="@+id/cmbMarcas"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/tvAsientos"
+                android:layout_toEndOf="@id/tvMarca" />
+
+            <TextView
+                android:id="@+id/tvTipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvMarca"
+                android:layout_marginTop="30dp"
+                android:text="Tipo:" />
+
+            <!--EditText
+                android:id="@+id/txtTipo"
+                android:layout_width="160dp"
+                android:layout_height="48dp"
+                android:layout_below="@id/tvMarca"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/tvTipo"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                /-->
+
+            <Spinner
+                android:id="@+id/cmbTipo"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/tvMarca"
+                android:layout_toEndOf="@id/tvTipo" />
+
+            <TextView
+                android:id="@+id/tvColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvMarca"
+                android:layout_toEndOf="@id/cmbTipo"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:text="Color: " />
+
+            <!--EditText
+                android:id="@+id/txtColor"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/tvMarca"
+                android:layout_toEndOf="@id/tvColor"
+                android:inputType="numberDecimal"
+                android:gravity="center"
+                /-->
+            <Spinner
+                android:id="@+id/cmbColores"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/tvMarca"
+                android:layout_toEndOf="@id/tvColor" />
+
+            <TextView
+                android:id="@+id/tvDescripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvColor"
+                android:layout_marginTop="40dp"
+                android:text="Descripcion: " />
+
+            <EditText
+                android:id="@+id/txtDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/tvColor"
+                android:layout_toEndOf="@id/tvDescripcion"
+                android:textSize="15dp"
+                android:text="sadj aisdjasijd siaj diasjd jsaijdiasj ijasdjiasjdijadaisdjdsaid jasijdiajsii"
+                />
+
+            <!---->
+            <TextView
+                android:id="@+id/tvImagen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtDescripcion"
+                android:layout_marginTop="20dp"
+                android:text="Imagen (URL): " />
+
+            <EditText
+                android:id="@+id/txtImagen"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_below="@id/tvImagen"
+                /> <!---->
+
+
+            <!-- BOTONES -->
+            <RelativeLayout
+                android:id="@+id/lyBotones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtImagen"
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:id="@+id/btnAgregar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Agregar"
+                    android:layout_alignParentStart="true"
+                    android:textSize="12dp"
+                    android:layout_marginStart="16dp" />
+
+                <Button
+                    android:id="@+id/btnActualizar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Actualizar"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"/>
+
+                <Button
+                    android:id="@+id/btnEliminar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Eliminar"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="12dp"/>
+
+            </RelativeLayout>
+
+            <!-- VOLVER -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lyBotones"
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:id="@+id/btnVolver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Volver"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"/>
+
+
+
+            </RelativeLayout>
+
+
+
+            <TextView
+                android:id="@+id/txtIdDB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

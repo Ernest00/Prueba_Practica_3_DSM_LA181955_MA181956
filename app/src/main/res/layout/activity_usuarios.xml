@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UsuariosActivity">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="5dp"
+            android:text="ADMINISTRACION DE USUARIOS"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <!--BUSCADOR-->
+        <RelativeLayout
+            android:id="@+id/lyBuscar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true">
+            <TextView
+                android:id="@+id/tvId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Codigo"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_alignParentStart="true"/>
+
+            <EditText
+                android:id="@+id/txtId"
+                android:inputType="number"
+                android:layout_width="100dp"
+                android:layout_height="48dp"
+                android:layout_toEndOf="@id/tvId"
+                android:gravity="center"
+                android:hint="28"
+                android:layout_centerHorizontal="true"/>
+
+            <Button
+                android:id="@+id/btnBuscar"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_toEndOf="@id/txtId"
+                android:text="Buscar"
+                android:textSize="12dp"
+                android:layout_marginStart="20dp"/>
+
+        </RelativeLayout>
+
+        <!--FORMULARIO-->
+        <TextView
+            android:id="@+id/tvNombres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lyBuscar"
+            android:layout_marginTop="20dp"
+            android:text="Nombres: " />
+
+        <EditText
+            android:id="@+id/txtNombres"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/lyBuscar"
+            android:layout_toEndOf="@id/tvNombres"
+            />
+
+        <TextView
+            android:id="@+id/tvApellidos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvNombres"
+            android:layout_marginTop="20dp"
+            android:text="Apellidos: " />
+
+        <EditText
+            android:id="@+id/txtApellidos"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/tvNombres"
+            android:layout_toEndOf="@id/tvApellidos"
+            />
+
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvApellidos"
+            android:layout_marginTop="20dp"
+            android:text="Email: " />
+
+        <EditText
+            android:id="@+id/txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/tvApellidos"
+            android:layout_toEndOf="@id/tvEmail"
+            />
+
+        <TextView
+            android:id="@+id/tvUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvEmail"
+            android:layout_marginTop="20dp"
+            android:text="Usuario: " />
+
+        <EditText
+            android:id="@+id/txtUser"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/tvEmail"
+            android:layout_toEndOf="@id/tvUser"
+            />
+
+        <TextView
+            android:id="@+id/tvPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvUser"
+            android:layout_marginTop="20dp"
+            android:text="Contraseña: " />
+
+        <EditText
+            android:id="@+id/txtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/tvUser"
+            android:layout_toEndOf="@id/tvPassword"
+            />
+
+        <TextView
+            android:id="@+id/tvTipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvPassword"
+            android:layout_marginTop="20dp"
+            android:text="Tipo de usuario: " />
+
+        <Spinner
+            android:id="@+id/cmbUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/tvPassword"
+            android:layout_toEndOf="@id/tvTipo" />
+
+
+        <!-- BOTONES -->
+        <RelativeLayout
+            android:id="@+id/lyBotones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTipo"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/btnAgregar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agregar"
+                android:layout_alignParentStart="true"
+                android:textSize="12dp"
+                android:layout_marginStart="16dp" />
+
+            <Button
+                android:id="@+id/btnActualizar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Actualizar"
+                android:layout_centerHorizontal="true"
+                android:textSize="12dp"/>
+
+            <Button
+                android:id="@+id/btnEliminar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Eliminar"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:textSize="12dp"/>
+
+        </RelativeLayout>
+
+        <!-- VOLVER -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lyBotones"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/btnVolver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Volver"
+                android:layout_centerHorizontal="true"
+                android:textSize="12dp"/>
+
+
+
+        </RelativeLayout>
+
+
+
+        <TextView
+            android:id="@+id/txtIdDB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
