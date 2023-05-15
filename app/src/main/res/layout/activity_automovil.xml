@@ -49,7 +49,7 @@
                     android:layout_height="48dp"
                     android:layout_toEndOf="@id/tvId"
                     android:gravity="center"
-                    android:hint="28"
+                    android:hint="1"
                     android:layout_centerHorizontal="true"/>
 
                 <Button
@@ -78,6 +78,7 @@
                 android:layout_height="48dp"
                 android:layout_below="@id/lyBuscar"
                 android:layout_toEndOf="@id/tvModelo"
+                android:hint="Modelo"
                 />
 
             <TextView
@@ -112,6 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_below="@id/tvModelo"
+                android:hint="132DS2113"
                 android:layout_toEndOf="@id/tvVIN"
                 />
 
@@ -128,6 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_below="@id/tvVIN"
+                android:hint="132DS2113"
                 android:layout_toEndOf="@id/tvChasis"
                 />
 
@@ -143,6 +146,7 @@
                 android:id="@+id/txtMotor"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:hint="132DS2113"
                 android:layout_below="@id/tvChasis"
                 android:layout_toEndOf="@id/tvMotor"
                 />
@@ -161,7 +165,7 @@
                 android:layout_height="48dp"
                 android:layout_below="@id/tvMotor"
                 android:layout_toEndOf="@id/tvAsientos"
-                android:text="20"
+                android:hint="20"
                 android:gravity="center"
                 android:inputType="number"
                 />
@@ -210,7 +214,7 @@
                 android:layout_height="48dp"
                 android:layout_below="@id/tvAsientos"
                 android:layout_toEndOf="@id/tvPrecio"
-                android:text="20,000"
+                android:hint="20000"
                 android:gravity="center"
                 android:inputType="numberDecimal"
                 />
@@ -314,7 +318,7 @@
                 android:layout_below="@id/tvColor"
                 android:layout_toEndOf="@id/tvDescripcion"
                 android:textSize="15dp"
-                android:text="sadj aisdjasijd siaj diasjd jsaijdiasj ijasdjiasjdijadaisdjdsaid jasijdiajsii"
+                android:hint="Descripcion"
                 />
 
             <!---->
@@ -330,6 +334,7 @@
                 android:id="@+id/txtImagen"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:hint="url"
                 android:layout_below="@id/tvImagen"
                 /> <!---->
 

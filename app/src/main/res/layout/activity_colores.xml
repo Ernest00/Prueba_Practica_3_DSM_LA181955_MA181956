@@ -46,7 +46,7 @@
                 android:layout_height="48dp"
                 android:layout_toEndOf="@id/tvId"
                 android:gravity="center"
-                android:hint="28"
+                android:hint="1"
                 android:layout_centerHorizontal="true"/>
 
             <Button
