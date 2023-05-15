@@ -25,29 +25,34 @@ import sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956.model.Favoritos
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
-class AutosAdapter(private val context: Context, private val listAutos: ArrayList<String>) :
-    RecyclerView.Adapter<AutosAdapter.ViewHolder>() {
+class FavoritosAdapter(private val context: Context, private val profesors: ArrayList<String>, private val fechas: ArrayList<String>) :
+    RecyclerView.Adapter<FavoritosAdapter.ViewHolder>() {
     var i: Int = 0
     var dbHelper: MyDatabaseHelper? = null
     var db: SQLiteDatabase? = null
     var cursor: Cursor? = null
 
+    lateinit var Fech : ArrayList<String>
+
     lateinit var listaCompleta: ArrayList<String>
     lateinit var listaID: ArrayList<String>
+    lateinit var listaFechas: ArrayList<String>
+
     private var onItemClick: OnItemClickListener? = null
     private var managerFavoritos: Favoritos? = null
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val nombreFechaView: TextView = view.findViewById(R.id.tvFecha)
         val nombreTextView: TextView = view.findViewById(R.id.tvModel)
         val datosTextView: TextView = view.findViewById(R.id.tvDatos)
         val ivImagen: ImageView = view.findViewById(R.id.ivImagenCarro)
-        val btnFav: Button = view.findViewById(R.id.favoriteButton)
+        val btnEliminar: Button = view.findViewById(R.id.EliminarButton)
 
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        listaCompleta = listAutos
+        listaCompleta = profesors
         listaID = ArrayList<String>()
         for (i in 0 until listaCompleta.size step 17) {
             listaID.add(listaCompleta[i])
@@ -57,15 +62,17 @@ class AutosAdapter(private val context: Context, private val listAutos: ArrayLis
         db = dbHelper!!.writableDatabase
         managerFavoritos = Favoritos(context)
 
+        listaFechas = fechas
+
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.autos_item, parent, false)
+            .inflate(R.layout.favoritos_item, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val profesor = listAutos[position]
+        val profesor = profesors[position]
 
-        val listaCompleta = listAutos
+        val listaCompleta = profesors
 
         val sublistas = listaCompleta.chunked(14)
 
@@ -77,18 +84,20 @@ class AutosAdapter(private val context: Context, private val listAutos: ArrayLis
         //  Log.d("Size2",(profesors.size/17).toString())
 
 
-        listaID.add(listAutos[0 + 17 * i])
+        listaID.add(profesors[0 + 17 * i])
+
+        holder.nombreFechaView.text = "Agregado a favoritos : " + listaFechas[position]
 
         holder.nombreTextView.text =
-            listAutos[14 + 17 * i] + " " + listAutos[1 + 17 * i] + ", Año " + listAutos[6 + 17 * i] + "\n" +
-                    "Precio: $" + listAutos[8 + 17 * i]
+            profesors[14 + 17 * i] + " " + profesors[1 + 17 * i] + ", Año " + profesors[6 + 17 * i] + "\n" +
+                    "Precio: $" + profesors[8 + 17 * i]
         holder.datosTextView.text =
-            "Tipo: ${listAutos[15 + 17 * i]}\nColor: ${listAutos[16 + 17 * i]}\nN° vin:  + ${listAutos[2 + 17 * i]} \nN° chasis: ${listAutos[3 + 17 * i]} \n" +
-                    "N° motor:${listAutos[4 + 17 * i]} \nN° Asientos: ${listAutos[5 + 17 * i]},  Capacidad: ${listAutos[7 + 17 * i]}ton.\n" +
-                    "Descripción: ${listAutos[10 + 17 * i]}"
+            "Tipo: ${profesors[15 + 17 * i]}\nColor: ${profesors[16 + 17 * i]}\nN° vin:  + ${profesors[2 + 17 * i]} \nN° chasis: ${profesors[3 + 17 * i]} \n" +
+                    "N° motor:${profesors[4 + 17 * i]} \nN° Asientos: ${profesors[5 + 17 * i]},  Capacidad: ${profesors[7 + 17 * i]}ton.\n" +
+                    "Descripción: ${profesors[10 + 17 * i]}"
 
         try {
-            Picasso.get().load(listAutos[9 + 17 * i].toUri()).into(holder.ivImagen)
+            Picasso.get().load(profesors[9 + 17 * i].toUri()).into(holder.ivImagen)
         } catch (e: Exception) {
             holder.ivImagen.setImageResource(R.drawable.auto)
             e.printStackTrace()
@@ -117,7 +126,7 @@ class AutosAdapter(private val context: Context, private val listAutos: ArrayLis
                onItemClick?.onItemClick(profesor[0+i])
            }*/
 
-        holder.btnFav.setOnClickListener {
+        holder.btnEliminar.setOnClickListener {
             Log.d("Jp", "IDS ${listaID.toString()}")
             Log.d("Jp2", "ID Seleccionado? ${listaID[position].toString()}")
 
@@ -126,42 +135,21 @@ class AutosAdapter(private val context: Context, private val listAutos: ArrayLis
             val usuario = DatosActivos.idActivo?.toInt()
             val auto = listaID[position].toInt()
 
-            // Obtener la fecha actual en tiempo real
-            val calendar = Calendar.getInstance()
-            val currentDate = calendar.time
+            val IdSel = managerFavoritos!!.GetIdToEliminate(usuario!!, auto)
 
-// Formatear la fecha en el formato deseado
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+            managerFavoritos!!.deleteItem(IdSel)
+            Toast.makeText(context, "Eliminado de favoritos, recargue la vista para ver los cambios", Toast.LENGTH_SHORT).show()
 
-            val fechaAutomatica = dateFormat.format(currentDate)
-            /**/
-            if (db != null) {
-                var b: Boolean = true
-                b = managerFavoritos!!.validateAdd(usuario!!, auto)
-                if (b == false) {
-                    managerFavoritos!!.addNewItem(
-                        usuario,
-                        auto,
-                        fechaAutomatica
-                    )
-
-                    Toast.makeText(context, "Agregado a favoritos", Toast.LENGTH_SHORT).show()
-                } else {
-
-                    Toast.makeText(context, "Ya está en favoritos", Toast.LENGTH_SHORT).show()
-                }
-
-
-            }
 
         }
+        /**/
 
 
         i++
     }
 
     override fun getItemCount(): Int {
-        return listAutos.size / 17
+        return profesors.size / 17
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener) {

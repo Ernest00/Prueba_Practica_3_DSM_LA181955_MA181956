@@ -193,4 +193,19 @@ class Automovil(context: Context?) {
         )
     }
 
+    fun searchItemsByAutoIds(ids: List<Int>): Cursor? {
+        val columns = arrayOf(
+            COL_ID, COL_MODELO, COL_VIN, COL_CHASIS, COL_MOTOR,
+            COL_ASIENTOS, COL_ANIO, COL_CAPACIDAD, COL_PRECIO,
+            COL_IMAGEN, COL_DESCRIPCION, COL_IDMARCA, COL_IDTIPO, COL_IDCOLOR
+        )
+
+        val selection = "$COL_ID IN (${ids.joinToString()})"
+
+        return db!!.query(
+            TABLE_NAME, columns, selection, null, null, null, null
+        )
+    }
+
+
 }

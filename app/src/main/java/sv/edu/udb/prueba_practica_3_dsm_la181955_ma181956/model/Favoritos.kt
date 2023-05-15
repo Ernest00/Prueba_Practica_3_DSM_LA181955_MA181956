@@ -87,6 +87,15 @@ class Favoritos(context: Context?) {
             "$COL_ID=?", arrayOf(id.toString()), null, null, null
         )
     }
+//En base al usuario en sesion
+    fun getRecordsByUser(idUsuario: Int): Cursor? {
+        val columns = arrayOf(COL_ID, COL_IDUSUARIO, COL_IDAUTOMOVIL, COL_FECHA)
+        val selection = "$COL_IDUSUARIO = ?"
+        val selectionArgs = arrayOf(idUsuario.toString())
+
+        return db!!.query(TABLE_NAME, columns, selection, selectionArgs, null, null, null)
+    }
+
 
     // Buscar si existe ya el favorito
     fun validateAdd(idUsuario: Int, idAutomovil: Int): Boolean {
@@ -99,6 +108,41 @@ class Favoritos(context: Context?) {
 
         return recordExists
     }
+
+    fun GetIdToEliminate(idUsuario: Int, idAutomovil: Int): Int {
+        val columns = arrayOf(COL_ID, COL_IDUSUARIO, COL_IDAUTOMOVIL)
+        val selection = "$COL_IDUSUARIO = ? AND $COL_IDAUTOMOVIL = ?"
+        val selectionArgs = arrayOf(idUsuario.toString(), idAutomovil.toString())
+
+        val cursor = db!!.query(TABLE_NAME, columns, selection, selectionArgs, null, null, null)
+
+        var id = -1
+
+        if (cursor != null && cursor.moveToFirst()) {
+            id = cursor.getInt(0)
+        }
+
+        return id
+    }
+
+    //Get fecha
+    fun getFecha(idUsuario: Int, idAutomovil: Int): String {
+        val columns = arrayOf(COL_ID, COL_IDUSUARIO, COL_IDAUTOMOVIL, COL_FECHA)
+        val selection = "$COL_IDUSUARIO = ? AND $COL_IDAUTOMOVIL = ?"
+        val selectionArgs = arrayOf(idUsuario.toString(), idAutomovil.toString())
+
+        val cursor = db!!.query(TABLE_NAME, columns, selection, selectionArgs, null, null, null)
+
+        var fecha = ""
+
+        if (cursor != null && cursor.moveToFirst()) {
+            fecha = cursor.getString(3)
+        }
+
+        return fecha
+    }
+
+
 
 
     // Mostrar todos los registros
