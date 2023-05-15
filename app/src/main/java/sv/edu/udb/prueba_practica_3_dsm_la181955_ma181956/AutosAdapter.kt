@@ -1,36 +1,68 @@
 package sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956
 
+import MyDatabaseHelper
+import android.content.Context
+import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
 import android.util.Log
-import android.util.Log.*
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 
 import sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956.model.Autos
+import sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956.model.DatosActivos
+import sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956.model.Favoritos
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
-class AutosAdapter(private val profesors: ArrayList<String>) : RecyclerView.Adapter<AutosAdapter.ViewHolder>() {
+class AutosAdapter(private val context: Context, private val profesors: ArrayList<String>) : RecyclerView.Adapter<AutosAdapter.ViewHolder>() {
 var i :Int = 0
+    var dbHelper : MyDatabaseHelper? = null
+    var db: SQLiteDatabase? = null
+    var cursor: Cursor? = null
+
+    lateinit var  listaCompleta : ArrayList<String>
+    lateinit var listaID: ArrayList<String>
     private var onItemClick: OnItemClickListener? = null
+    private var managerFavoritos: Favoritos? = null
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nombreTextView: TextView = view.findViewById(R.id.tvModel)
         val datosTextView: TextView = view.findViewById(R.id.tvDatos)
         val ivImagen : ImageView = view.findViewById(R.id.ivImagenCarro)
+        val btnFav: Button = view.findViewById(R.id.favoriteButton)
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        listaCompleta = profesors
+        listaID = ArrayList<String>()
+        for (i in 0 until listaCompleta.size step 17) {
+            listaID.add(listaCompleta[i])
+        }
+
+        dbHelper = MyDatabaseHelper(context)
+        db = dbHelper!!.writableDatabase
+        managerFavoritos = Favoritos(context)
+
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.alumno_item, parent, false)
+            .inflate(R.layout.autos_item, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //val profesor = profesors[position]
+        val profesor = profesors[position]
 
         val listaCompleta = profesors
 
@@ -40,29 +72,25 @@ var i :Int = 0
             println(sublista)
         }*/
 
-        println(sublistas[0])
+       // Log.d("Size",profesors.size.toString())
+      //  Log.d("Size2",(profesors.size/17).toString())
 
-        Log.d("Size",profesors.size.toString())
-        Log.d("Size2",(profesors.size/14).toString())
-        Log.d("Size3",(profesors.size/13).toString())
 
-            holder.nombreTextView.text = profesors[0 + 14*i] + " - " + profesors[1 + 14*i] + ", Año " + profesors[6 + 14*i] +"\n" +
-                    "Precio: $" + profesors[8 + 14*i]
-        holder.datosTextView.text= "N° vin: " + profesors[2 + 14*i]  + "\nN° chasis:" +  profesors[3 + 14*i] + "\n" +
-                "N° motor:" +profesors[4 + 14*i] + "\nN° Asientos:" + profesors[5 + 14*i]+ ",  Capacidad:" + profesors[7 + 14*i] + "ton."
+listaID.add(profesors[0 + 17*i])
 
-        Log.d("URI PNO",profesors[9])
+        holder.nombreTextView.text = profesors[14 + 17 * i] + " " + profesors[1 + 17*i] + ", Año " + profesors[6 + 17*i] +"\n" +
+                "Precio: $" + profesors[8 + 17*i]
+        holder.datosTextView.text= "Tipo: ${profesors[15 + 17 * i]}\nColor: ${profesors[16 + 17*i]}\nN° vin:  + ${profesors[2 + 17*i]} \nN° chasis: ${profesors[3 + 17*i]} \n" +
+                "N° motor:${profesors[4 + 17*i]} \nN° Asientos: ${profesors[5 + 17*i]},  Capacidad: ${profesors[7 + 17*i]}ton.\n" +
+                "Descripción: ${profesors[10 + 17*i]}"
+
         try {
-            Picasso.get().load(profesors[9 + 14*i].toUri()).into(holder.ivImagen)
+            Picasso.get().load(profesors[9 + 17*i].toUri()).into(holder.ivImagen)
         } catch (e: Exception) {
+            holder.ivImagen.setImageResource(R.drawable.auto)
             e.printStackTrace()
         }
 
-
-        /*  for (i in 0..profesors.size-2 step 14) {
-              Log.d("Data P${0+i}",profesors[0+i])
-
-          }*/
         /*Log.d("Id P${0+i}",profesors[0+i])
         Log.d("Modelo P${1+i}",profesors[1+i])
         Log.d("Vin P${2+i}",profesors[2+i])
@@ -75,26 +103,73 @@ var i :Int = 0
         Log.d("URI P${9+i}",profesors[9+i])
         Log.d("descr P${10+i}",profesors[10+i])
         Log.d("marca P${11+i}",profesors[11+i])
-        Log.d("typo P${12+i}",profesors[12+i])
-        Log.d("color P${13+i}",profesors[13+i]*/
-
-
-       // Log.d("P2a",profesor.toString())
-
-//id profesors[0+i]
-        //holder.nombreTextView.text = profesors[0+i] + profesors[1+i] + profesors[2+i]
-       //holder.apellidoTextView.text = profesor
-        //holder.edadTextView.text = profesor.get(0).toString()
+        Log.d("tipo P${12+i}",profesors[12+i])
+        Log.d("color P${13+i}",profesors[13+i]
+        Log.d("NMarca P${13+i}",profesors[14+i]
+        Log.d("NTipo P${13+i}",profesors[15+i]
+        Log.d("NColor P${13+i}",profesors[16+i]*/
 
         // Agrega el escuchador de clics a la vista del elemento de la lista
-     /*   holder.itemView.setOnClickListener {
-            onItemClick?.onItemClick(profesor)
+     /* holder.itemView.setOnClickListener {
+            onItemClick?.onItemClick(profesor[0+i])
         }*/
+
+        holder.btnFav.setOnClickListener {
+            Log.d("Jp","IDS ${listaID.toString()}")
+            Log.d("Jp2","ID Seleccionado? ${listaID[position].toString()}")
+
+            //Toast.makeText(context, "ID Seleccionado${listaID[position].toString()}", Toast.LENGTH_SHORT).show()
+            managerFavoritos = Favoritos(context)
+            val usuario = DatosActivos.idActivo?.toInt()
+            val auto = listaID[position].toInt()
+
+            // Obtener la fecha actual en tiempo real
+            val calendar = Calendar.getInstance()
+            val currentDate = calendar.time
+
+// Formatear la fecha en el formato deseado
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+
+            val fechaAutomatica = dateFormat.format(currentDate)
+            /**/
+            if (db != null) {
+var b :Boolean = true
+                b = managerFavoritos!!.validateAdd(usuario!!,auto)
+if(b==false){
+    managerFavoritos!!.addNewItem(
+        usuario,
+        auto,
+        fechaAutomatica)
+
+    Toast.makeText(context, "Agregado a favoritos", Toast.LENGTH_SHORT).show()
+}else{
+
+    Toast.makeText(context, "Ya está en favoritos", Toast.LENGTH_SHORT).show()
+}
+
+
+                } /*else if (view === btnEliminar) {
+                    if (vericarFormulario("eliminar")) {
+// manager.eliminar(1);
+                        managerAuto!!.deleteItem(idSel.toInt())
+                        txtId!!.setText("")
+                        mostrarMensajesArriba(view, "Automovil eliminado")
+
+                    }
+                }else {
+
+                    mostrarMensajesArriba(view, "No se puede conectar a la Base de Datos")
+                }*/
+
+            }
+            /**/
+
+
         i++
     }
 
     override fun getItemCount(): Int {
-        return profesors.size / 14
+        return profesors.size / 17
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
@@ -104,4 +179,12 @@ var i :Int = 0
     interface OnItemClickListener {
         fun onItemClick(profesor: Autos)
     }
+
+fun mostrarMensajesArriba(view:View, mensaje: String){
+    val snackbar = Snackbar.make(view, mensaje, Snackbar.LENGTH_LONG)
+    val layoutParams = snackbar.view.layoutParams as FrameLayout.LayoutParams
+    layoutParams.gravity = Gravity.TOP
+    snackbar.view.layoutParams = layoutParams
+    snackbar.show()
+}
 }

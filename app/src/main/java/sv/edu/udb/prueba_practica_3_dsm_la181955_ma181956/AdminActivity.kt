@@ -3,6 +3,8 @@ package sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -86,5 +88,65 @@ class AdminActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_sign_out -> {
+                Toast.makeText(
+                    this, "Sesión cerrada",
+                    Toast.LENGTH_LONG
+                ).show()
+                DatosActivos.usuarioActivo = ""
+                DatosActivos.idActivo    = ""
+
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_marcas -> {
+                val intent = Intent(this, MarcasActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_colores -> {
+                val intent = Intent(this, ColoresActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_tipos -> {
+                val intent = Intent(this, TipoAutoActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_automoviles -> {
+                val intent = Intent(this, AutomovilActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_usuarios -> {
+                val intent = Intent(this, UsuariosActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_listaAutos -> {
+                val intent = Intent(this, ClientActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_favoritos -> {
+                val intent = Intent(this, MarcasActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
