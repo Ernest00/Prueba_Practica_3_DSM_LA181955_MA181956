@@ -165,7 +165,10 @@
                 android:layout_height="48dp"
                 android:layout_below="@id/tvMotor"
                 android:layout_toEndOf="@id/tvAsientos"
+<<<<<<< HEAD
                 android:hint="20"
+=======
+>>>>>>> 63133811b6aa16ece45e0403645a23b6063136b4
                 android:gravity="center"
                 android:inputType="number"
                 />
@@ -182,7 +185,7 @@
 
             <EditText
                 android:id="@+id/txtCapacidad"
-                android:layout_width="90dp"
+                android:layout_width="50dp"
                 android:layout_height="48dp"
                 android:layout_below="@id/tvMotor"
                 android:layout_toEndOf="@id/tvCapacidad"
@@ -198,7 +201,7 @@
                 android:layout_toEndOf="@id/txtCapacidad"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
-                android:text=" ton." />
+                android:text="ton." />
 
             <TextView
                 android:id="@+id/tvPrecio"
@@ -214,7 +217,10 @@
                 android:layout_height="48dp"
                 android:layout_below="@id/tvAsientos"
                 android:layout_toEndOf="@id/tvPrecio"
+<<<<<<< HEAD
                 android:hint="20000"
+=======
+>>>>>>> 63133811b6aa16ece45e0403645a23b6063136b4
                 android:gravity="center"
                 android:inputType="numberDecimal"
                 />
@@ -229,15 +235,6 @@
                 android:layout_marginTop="20dp"
                 android:text="Marca: " />
 
-            <!--EditText
-                android:id="@+id/txtMarca"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_below="@id/tvAsientos"
-                android:layout_toEndOf="@id/tvMarca"
-                android:inputType="numberDecimal"
-                android:gravity="center"
-                /-->
             <Spinner
                 android:id="@+id/cmbMarcas"
                 android:layout_width="match_parent"
@@ -253,17 +250,6 @@
                 android:layout_below="@id/tvMarca"
                 android:layout_marginTop="30dp"
                 android:text="Tipo:" />
-
-            <!--EditText
-                android:id="@+id/txtTipo"
-                android:layout_width="160dp"
-                android:layout_height="48dp"
-                android:layout_below="@id/tvMarca"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@id/tvTipo"
-                android:gravity="center"
-                android:inputType="numberDecimal"
-                /-->
 
             <Spinner
                 android:id="@+id/cmbTipo"
@@ -283,16 +269,6 @@
                 android:layout_marginTop="30dp"
                 android:text="Color: " />
 
-            <!--EditText
-                android:id="@+id/txtColor"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="10dp"
-                android:layout_below="@id/tvMarca"
-                android:layout_toEndOf="@id/tvColor"
-                android:inputType="numberDecimal"
-                android:gravity="center"
-                /-->
             <Spinner
                 android:id="@+id/cmbColores"
                 android:layout_width="match_parent"
@@ -318,7 +294,11 @@
                 android:layout_below="@id/tvColor"
                 android:layout_toEndOf="@id/tvDescripcion"
                 android:textSize="15dp"
+<<<<<<< HEAD
                 android:hint="Descripcion"
+=======
+                android:text=""
+>>>>>>> 63133811b6aa16ece45e0403645a23b6063136b4
                 />
 
             <!---->
@@ -389,20 +369,13 @@
                     android:text="Volver"
                     android:layout_centerHorizontal="true"
                     android:textSize="12dp"/>
-
-
-
             </RelativeLayout>
-
-
-
             <TextView
                 android:id="@+id/txtIdDB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:visibility="invisible" />
-
         </RelativeLayout>
     </ScrollView>
 
