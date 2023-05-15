@@ -22,14 +22,7 @@
         android:title="Administrar usuarios"
         app:showAsAction="never">
     </item>
-    <item android:id="@+id/action_listaAutos"
-        android:title="Ver automoviles"
-        app:showAsAction="never">
-    </item>
-    <item android:id="@+id/action_favoritos"
-        android:title="Ver favoritos"
-        app:showAsAction="never">
-    </item>
+
     <item android:id="@+id/action_sign_out"
         android:title="Salir"
         app:showAsAction="never">

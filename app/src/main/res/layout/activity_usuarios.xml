@@ -138,6 +138,7 @@
             android:id="@+id/txtPassword"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:inputType="textPassword"
             android:layout_below="@id/tvUser"
             android:layout_toEndOf="@id/tvPassword"
             />

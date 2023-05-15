@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -19,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956.model.Automovil
 import sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956.model.Colores
+import sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956.model.DatosActivos
 import sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956.model.Marcas
 import sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956.model.TipoAuto
 
@@ -189,7 +192,16 @@ class AutomovilActivity : AppCompatActivity(),  View.OnClickListener {
                         idcolor
 
                     )
-
+                    txtModelo!!.setText("")
+                    txtVin!!.setText("")
+                    txtChasis!!.setText("")
+                    txtMotor!!.setText("")
+                    txtAnio!!.setText("")
+                    txtAsientos!!.setText("")
+                    txtCapacidad!!.setText("")
+                    txtPrecio!!.setText("")
+                    txtDescripcion!!.setText("")
+                    txtImagen!!.setText("")
                     mostrarMensajesArriba(view, "Automovil agregado")
 
                 }
@@ -211,7 +223,18 @@ class AutomovilActivity : AppCompatActivity(),  View.OnClickListener {
                         idtipo,
                         idcolor
                     )
+                    //limpiar
                     txtId!!.setText("")
+                    txtModelo!!.setText("")
+                    txtVin!!.setText("")
+                    txtChasis!!.setText("")
+                    txtMotor!!.setText("")
+                    txtAnio!!.setText("")
+                    txtAsientos!!.setText("")
+                    txtCapacidad!!.setText("")
+                    txtPrecio!!.setText("")
+                    txtDescripcion!!.setText("")
+                    txtImagen!!.setText("")
                     mostrarMensajesArriba(view, "Automovil actualizado")
 
                 }
@@ -220,6 +243,16 @@ class AutomovilActivity : AppCompatActivity(),  View.OnClickListener {
 // manager.eliminar(1);
                     managerAuto!!.deleteItem(idSel.toInt())
                     txtId!!.setText("")
+                    txtModelo!!.setText("")
+                    txtVin!!.setText("")
+                    txtChasis!!.setText("")
+                    txtMotor!!.setText("")
+                    txtAnio!!.setText("")
+                    txtAsientos!!.setText("")
+                    txtCapacidad!!.setText("")
+                    txtPrecio!!.setText("")
+                    txtDescripcion!!.setText("")
+                    txtImagen!!.setText("")
                     mostrarMensajesArriba(view, "Automovil eliminado")
 
                 }
@@ -257,6 +290,16 @@ class AutomovilActivity : AppCompatActivity(),  View.OnClickListener {
 
                     }else{
 
+                        txtModelo!!.setText("")
+                        txtVin!!.setText("")
+                        txtChasis!!.setText("")
+                        txtMotor!!.setText("")
+                        txtAnio!!.setText("")
+                        txtAsientos!!.setText("")
+                        txtCapacidad!!.setText("")
+                        txtPrecio!!.setText("")
+                        txtDescripcion!!.setText("")
+                        txtImagen!!.setText("")
                         mostrarMensajesArriba(view, "No se encontraron registros")
                     }
 
@@ -363,6 +406,12 @@ class AutomovilActivity : AppCompatActivity(),  View.OnClickListener {
                 anio_v = false
             }
 
+            if (anio.length!=4 || anio.toInt()<1700 || anio.toInt()>2024 ) {
+                txtAnio!!.error = "Ingrese el Año de manera correcta"
+                txtAnio!!.requestFocus()
+                anio_v = false
+            }
+
             if (asientos.isEmpty()) {
                 txtAsientos!!.error = "Ingrese el N° de asientos"
                 txtAsientos!!.requestFocus()
@@ -425,6 +474,65 @@ class AutomovilActivity : AppCompatActivity(),  View.OnClickListener {
         layoutParams.gravity = Gravity.TOP
         snackbar.view.layoutParams = layoutParams
         snackbar.show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_sign_out -> {
+                Toast.makeText(
+                    this, "Sesión cerrada",
+                    Toast.LENGTH_LONG
+                ).show()
+                DatosActivos.usuarioActivo = ""
+                DatosActivos.idActivo    = ""
+
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_marcas -> {
+                val intent = Intent(this, MarcasActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_colores -> {
+                val intent = Intent(this, ColoresActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_tipos -> {
+                val intent = Intent(this, TipoAutoActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_automoviles -> {
+                val intent = Intent(this, AutomovilActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_usuarios -> {
+                val intent = Intent(this, UsuariosActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_listaAutos -> {
+                val intent = Intent(this, ClientActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_favoritos -> {
+                val intent = Intent(this, MarcasActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 

@@ -106,6 +106,8 @@ class Favoritos(context: Context?) {
         val cursor = db!!.query(TABLE_NAME, columns, selection, selectionArgs, null, null, null)
         val recordExists = cursor != null && cursor.count > 0
 
+        cursor?.close()
+
         return recordExists
     }
 
@@ -121,6 +123,7 @@ class Favoritos(context: Context?) {
         if (cursor != null && cursor.moveToFirst()) {
             id = cursor.getInt(0)
         }
+        cursor?.close()
 
         return id
     }
@@ -139,11 +142,10 @@ class Favoritos(context: Context?) {
             fecha = cursor.getString(3)
         }
 
+        cursor?.close()
+
         return fecha
     }
-
-
-
 
     // Mostrar todos los registros
     fun searchItemAll(): Cursor? {

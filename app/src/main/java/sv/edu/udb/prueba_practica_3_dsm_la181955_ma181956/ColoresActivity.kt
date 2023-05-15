@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -16,6 +18,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956.model.Colores
+import sv.edu.udb.prueba_practica_3_dsm_la181955_ma181956.model.DatosActivos
 
 
 class ColoresActivity : AppCompatActivity(),  View.OnClickListener {
@@ -72,7 +75,7 @@ class ColoresActivity : AppCompatActivity(),  View.OnClickListener {
                         nombre
                     )
                     mostrarMensajesArriba(view, "Color agregado")
-
+                    txtNombre!!.setText("")
                 }
             } else if (view === btnActualizar) {
                 if (vericarFormulario("actualizar")) {
@@ -81,14 +84,18 @@ class ColoresActivity : AppCompatActivity(),  View.OnClickListener {
                         nombre
                     )
                       mostrarMensajesArriba(view, "Color actualizado")
+                    txtNombre!!.setText("")
+                    txtId!!.setText("")
 
                 }
             } else if (view === btnEliminar) {
                 if (vericarFormulario("eliminar")) {
-// manager.eliminar(1);
+
                     managerColores!!.deleteItem(idSel.toInt())
 
                     mostrarMensajesArriba(view, "Color eliminado")
+                    txtNombre!!.setText("")
+                    txtId!!.setText("")
 
                 }
             } else if (view === btnBuscar) {
@@ -106,7 +113,7 @@ class ColoresActivity : AppCompatActivity(),  View.OnClickListener {
                         mostrarMensajesArriba(view, "Cargando Información")
 
                     }else{
-
+                        txtNombre!!.setText("")
                         mostrarMensajesArriba(view, "No se encontraron registros")
                     }
 
@@ -182,6 +189,65 @@ class ColoresActivity : AppCompatActivity(),  View.OnClickListener {
         layoutParams.gravity = Gravity.TOP
         snackbar.view.layoutParams = layoutParams
         snackbar.show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_sign_out -> {
+                Toast.makeText(
+                    this, "Sesión cerrada",
+                    Toast.LENGTH_LONG
+                ).show()
+                DatosActivos.usuarioActivo = ""
+                DatosActivos.idActivo    = ""
+
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_marcas -> {
+                val intent = Intent(this, MarcasActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_colores -> {
+                val intent = Intent(this, ColoresActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_tipos -> {
+                val intent = Intent(this, TipoAutoActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_automoviles -> {
+                val intent = Intent(this, AutomovilActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_usuarios -> {
+                val intent = Intent(this, UsuariosActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_listaAutos -> {
+                val intent = Intent(this, ClientActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_favoritos -> {
+                val intent = Intent(this, MarcasActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }
