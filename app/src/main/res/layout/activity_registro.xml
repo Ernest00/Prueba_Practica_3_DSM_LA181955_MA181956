@@ -37,6 +37,7 @@
         android:layout_marginStart="46dp"
         android:layout_marginBottom="5dp"
         android:ems="10"
+        android:hint="Nombres"
         android:singleLine="true"
         app:layout_constraintBottom_toTopOf="@+id/tvApellidos"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,6 +61,7 @@
         android:layout_marginBottom="5dp"
         android:ems="10"
         android:singleLine="true"
+        android:hint="Apellidos"
         app:layout_constraintBottom_toTopOf="@+id/tvEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvApellidos" />
@@ -82,6 +84,7 @@
         android:layout_marginBottom="5dp"
         android:ems="10"
         android:singleLine="true"
+        android:hint="usuario@correo.com"
         app:layout_constraintBottom_toTopOf="@+id/tvEmail"
         app:layout_constraintStart_toStartOf="parent"
         android:inputType="textEmailAddress"
@@ -105,6 +108,7 @@
             android:layout_marginBottom="5dp"
             android:ems="10"
             android:singleLine="true"
+            android:hint="usuario"
             app:layout_constraintBottom_toTopOf="@+id/tvPass"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvUsuario" />
@@ -127,6 +131,7 @@
             android:ems="10"
             android:inputType="textPassword"
             android:singleLine="true"
+            android:hint="******"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvPass" />
 
